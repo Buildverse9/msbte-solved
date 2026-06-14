@@ -9,10 +9,10 @@
     completedPracticals: JSON.parse(localStorage.getItem("msbte-completed")) || {}
   };
 
-  // Fetch solutions from backend
+  // Fetch solutions from static json file for GitHub Pages
   async function fetchSolutions() {
     try {
-      const res = await fetch("/api/solutions");
+      const res = await fetch("data/solutions.json");
       if (res.ok) {
         state.uploads = await res.json();
         // Re-render current view if needed
