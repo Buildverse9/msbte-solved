@@ -12,7 +12,8 @@
   // Fetch solutions from static json file for GitHub Pages
   async function fetchSolutions() {
     try {
-      const res = await fetch("data/solutions.json");
+      // Add a timestamp to prevent the browser from caching the old solutions.json
+      const res = await fetch(`data/solutions.json?t=${Date.now()}`);
       if (res.ok) {
         state.uploads = await res.json();
         // Re-render current view if needed
@@ -441,7 +442,7 @@
 
         <div class="prac-actions">
           ${adminSolution ? `
-            <a href="${adminSolution.filePath}" target="_blank" class="btn btn-primary" style="text-decoration:none;">
+            <a href="${adminSolution.filePath.replace(/^\//, '')}" target="_blank" class="btn btn-primary" style="text-decoration:none;">
               <span class="material-icons-round">visibility</span>
               View Solution (PDF)
             </a>

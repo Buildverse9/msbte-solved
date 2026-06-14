@@ -85,7 +85,7 @@ app.post('/api/upload', upload.single('solution_file'), (req, res) => {
       subject,
       practical: parseInt(practical),
       contributor: contributor || 'Anonymous',
-      filePath: `/uploads/${req.file.filename}`,
+      filePath: `uploads/${req.file.filename}`,
       originalName: req.file.originalname,
       uploadDate: new Date().toISOString()
     };
