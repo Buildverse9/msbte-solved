@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MSBTE Solved | Premium Diploma Manual Solutions</title>
+  <meta name="description"
+    content="Access and upload high-quality MSBTE manual solutions for Computer, Civil, Mechanical, Electrical, and Telecommunication diploma branches from Sem 1 to Sem 6.">
+  <meta name="keywords"
+    content="MSBTE, Manual Solutions, MSBTE Solved, Diploma Solutions, Computer Manual, Civil Manual, Sem 1, Sem 6, Practicals">
+  <meta name="author" content="MSBTE Solved Team">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- Header/Navbar -->
+    <header id="app-header">
+      <div class="nav-container">
+        <a href="#home" class="logo" id="nav-logo">
+          <span class="material-icons-round">auto_stories</span>
+          MSBTE Solved
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <nav class="nav-links" id="desktop-nav">
+          <a href="#home" class="nav-link active" data-view="home">Home</a>
+          <a href="#about" class="nav-link" data-view="about">About</a>
+          <a href="#contact" class="nav-link" data-view="contact">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark/Light Mode">
+            <span class="material-icons-round" id="theme-icon">light_mode</span>
+          </button>
+          <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open Menu">
+            <span class="material-icons-round">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-menu" id="mobile-drawer">
+      <a href="#home" class="mobile-nav-link active" data-view="home">Home</a>
+      <a href="#about" class="mobile-nav-link" data-view="about">About</a>
+      <a href="#contact" class="mobile-nav-link" data-view="contact">Contact</a>
+    </div>
+
+    <!-- Main Content Area -->
+    <main>
+
+      <!-- 1. HOME VIEW -->
+      <section id="view-home" class="view-section active">
+        <div class="hero">
+          <div class="content-wrapper">
+            <h1>Crush Your <span>MSBTE Practicals</span></h1>
+            <p>Get instant access to step-by-step solved manuals for all diploma branches. Free, accurate, and
+              student-powered.</p>
+
+            <div class="search-container">
+              <span class="material-icons-round search-icon">search</span>
+              <input type="text" class="search-bar" id="main-search-bar"
+                placeholder="Search for subjects (e.g. Operating Systems, Java)..." autocomplete="off">
+              <div class="search-results-dropdown" id="search-dropdown">
+                <!-- Dynamically filled with search results -->
+              </div>
+            </div>
+
+            <div class="hero-stats">
+              <div class="stat-item">
+                <span class="stat-value">6</span>
+                <span class="stat-label">Branches</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">1,200+</span>
+                <span class="stat-label">Solved Practicals</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">5k+</span>
+                <span class="stat-label">Active Students</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-wrapper">
+          <h2 class="section-title">Select Your Branch</h2>
+          <div class="branches-grid" id="branches-list-grid">
+            <!-- Dynamically populated from data.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. BRANCH DETAIL VIEW -->
+      <section id="view-branch" class="view-section">
+        <div class="content-wrapper">
+          <div class="back-btn" id="branch-back-btn">
+            <span class="material-icons-round">arrow_back</span> Back to Branches
+          </div>
+
+          <div class="branch-header" id="branch-details-header">
+            <!-- Populated dynamically -->
+          </div>
+
+          <div class="semester-list" id="semester-accordion-list">
+            <!-- Populated dynamically with Sem 1 to Sem 6 and their subjects -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. SUBJECT/PRACTICALS DETAIL VIEW -->
+      <section id="view-subject" class="view-section">
+        <div class="content-wrapper">
+          <div class="back-btn" id="subject-back-btn">
+            <span class="material-icons-round">arrow_back</span> Back to Semester
+          </div>
+
+          <div class="glass-card subject-header-card" id="subject-details-card">
+            <!-- Dynamically filled with subject code, title, and progress bar -->
+          </div>
+
+          <h3 style="margin-bottom: 20px;">List of Practicals (1 to 12)</h3>
+          <div class="practicals-list" id="practicals-rows-container">
+            <!-- Dynamically filled with practicals list -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. ABOUT VIEW -->
+      <section id="view-about" class="view-section">
+        <div class="content-wrapper">
+          <div class="about-hero">
+            <h2>Making Submissions Stress-Free</h2>
+            <p>MSBTE Solved is an open-source, student-first platform designed to relieve the stress of writing
+              voluminous technical manuals. We provide reference code, diagrams, and calculations, giving you more time
+              to focus on actual learning.</p>
+          </div>
+
+          <div class="about-grid">
+            <div class="glass-card about-card">
+              <span class="material-icons-round about-card-icon">sentiment_satisfied_alt</span>
+              <h3>100% Free</h3>
+              <p>We believe learning materials should be accessible. There are no hidden fees, paywalls, or premium
+                subscriptions.</p>
+            </div>
+
+            <div class="glass-card about-card">
+              <span class="material-icons-round about-card-icon">groups</span>
+              <h3>Student Powered</h3>
+              <p>All solutions are uploaded and double-checked by top diploma students. Join the community and
+                contribute yours!</p>
+            </div>
+
+            <div class="glass-card about-card">
+              <span class="material-icons-round about-card-icon">verified_user</span>
+              <h3>Verified Outputs</h3>
+              <p>Every code snippet and circuit diagram includes real execution outcomes so you can submit with
+                confidence.</p>
+            </div>
+          </div>
+
+          <div class="team-section">
+            <h2>Meet the Creators</h2>
+            <div class="team-grid">
+              <div class="glass-card team-member">
+                <div class="member-avatar">Y</div>
+                <h3>Yash Patil</h3>
+                <p>Founder & Full Stack Developer</p>
+                <p class="member-desc">Final year Computer Technology student. Created this portal to centralize all
+                  board solutions.</p>
+              </div>
+              <div class="glass-card team-member">
+                <div class="member-avatar">A</div>
+                <h3>Aniket Deshmukh</h3>
+                <p>Content Lead & Reviewer</p>
+                <p class="member-desc">Directs checking standard chemistry, electrical, and structural design solutions.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. CONTACT VIEW -->
+      <section id="view-contact" class="view-section">
+        <div class="content-wrapper">
+          <div class="contact-layout">
+
+            <div class="contact-info">
+              <h2>Get in Touch with Us</h2>
+              <p>Have issues with a download? Found a bug in a solution? Want to collaborate or become a content
+                reviewer? Drop us a line and our team will get back to you within 24 hours.</p>
+
+              <div class="contact-methods">
+                <div class="glass-card method-card">
+                  <div class="method-icon">
+                    <span class="material-icons-round">email</span>
+                  </div>
+                  <div class="method-details">
+                    <h4>Email Address</h4>
+                    <p>support@msbtesolved.in</p>
+                  </div>
+                </div>
+
+                <div class="glass-card method-card">
+                  <div class="method-icon">
+                    <span class="material-icons-round">forum</span>
+                  </div>
+                  <div class="method-details">
+                    <h4>Discord Community</h4>
+                    <p>discord.gg/msbte-solved</p>
+                  </div>
+                </div>
+
+                <div class="glass-card method-card">
+                  <div class="method-icon">
+                    <span class="material-icons-round">location_on</span>
+                  </div>
+                  <div class="method-details">
+                    <h4>Location</h4>
+                    <p>Pune, Maharashtra, India</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card contact-form">
+              <h3>Send a Message</h3>
+              <form id="contact-us-form" onsubmit="return false;">
+                <div class="form-group" style="margin-bottom: 16px;">
+                  <label for="contact-name">Name</label>
+                  <input type="text" id="contact-name" class="form-control" placeholder="Your full name" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 16px;">
+                  <label for="contact-email">Email</label>
+                  <input type="email" id="contact-email" class="form-control" placeholder="Your active email" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 20px;">
+                  <label for="contact-message">Message</label>
+                  <textarea id="contact-message" class="form-control" rows="5"
+                    placeholder="Details about your inquiry, bug reports, or feedback..." required
+                    style="resize: vertical;"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                  <span class="material-icons-round">send</span>
+                  Send Message
+                </button>
+              </form>
+            </div>
+
+          </div>
+
+          <!-- FAQs Accordion -->
+          <div class="faq-section">
+            <h2 class="faq-title">Frequently Asked Questions</h2>
+            <div class="faq-list">
+              <div class="faq-item">
+                <button class="faq-question">
+                  Are these solutions compatible with K-Scheme?
+                  <span class="material-icons-round faq-chevron">expand_more</span>
+                </button>
+                <div class="faq-answer">
+                  Yes, all manual solutions are structured according to the latest MSBTE K-Scheme curriculum.
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question">
+                  Can I edit the uploaded solutions?
+                  <span class="material-icons-round faq-chevron">expand_more</span>
+                </button>
+                <div class="faq-answer">
+                  Direct edits are disabled. However, you can upload a better version of any practical using the upload
+                  form. Once verified, it will display as an alternate solution option.
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question">
+                  How long does verification of uploaded solutions take?
+                  <span class="material-icons-round faq-chevron">expand_more</span>
+                </button>
+                <div class="faq-answer">
+                  Usually, the content team uploads new solutions as soon as official verified references are available!
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+    <!-- Notification toast -->
+    <div class="toast-msg success-toast" id="toast-notification">
+      <span class="material-icons-round" id="toast-icon">check_circle</span>
+      <span id="toast-message">Action completed successfully!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-logo">MSBTE Solved</div>
+        <div class="footer-links">
+          <a href="#about">About Us</a>
+          <a href="#contact">Contact Support</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 MSBTE Solved. Not affiliated with the Maharashtra State Board of Technical
+          Education. Made for student learning.</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

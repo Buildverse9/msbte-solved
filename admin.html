@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | MSBTE Solved</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .admin-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    .admin-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    .admin-table th, .admin-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .admin-table th {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+    @media (max-width: 768px) {
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <header id="app-header">
+      <div class="nav-container">
+        <a href="/" class="logo">
+          <span class="material-icons-round">auto_stories</span>
+          MSBTE Admin
+        </a>
+        <div class="nav-actions">
+          <a href="/" class="btn btn-outline" style="text-decoration: none;">Back to Site</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-container">
+      <div class="admin-header">
+        <h1>Admin Dashboard</h1>
+        <p>Manage manual solutions and uploads</p>
+      </div>
+
+      <div class="admin-grid">
+        <!-- Upload Form -->
+        <div class="admin-card">
+          <h2>Upload Official Solution</h2>
+          <form id="admin-upload-form" onsubmit="return false;">
+            <div class="form-group" style="margin-bottom: 15px;">
+              <label for="admin-branch">Branch</label>
+              <select id="admin-branch" class="form-control" required>
+                <option value="" disabled selected>Select Branch</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 15px;">
+              <label for="admin-semester">Semester</label>
+              <select id="admin-semester" class="form-control" required disabled>
+                <option value="" disabled selected>Select Sem</option>
+                <option value="1">Semester 1</option>
+                <option value="2">Semester 2</option>
+                <option value="3">Semester 3</option>
+                <option value="4">Semester 4</option>
+                <option value="5">Semester 5</option>
+                <option value="6">Semester 6</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 15px;">
+              <label for="admin-subject">Subject</label>
+              <select id="admin-subject" class="form-control" required disabled>
+                <option value="" disabled selected>Select Subject</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 15px;">
+              <label for="admin-practical">Practical Number</label>
+              <select id="admin-practical" class="form-control" required disabled>
+                <option value="" disabled selected>Select Practical</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 15px;">
+              <label>Solution File (PDF Only)</label>
+              <input type="file" id="admin-file" accept=".pdf" class="form-control" required style="padding: 10px;">
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;" id="admin-submit-btn">
+              <span class="material-icons-round">publish</span> Upload Solution
+            </button>
+          </form>
+          <div id="admin-upload-status" style="margin-top: 15px; font-weight: 500; text-align: center;"></div>
+        </div>
+
+        <!-- Solutions List -->
+        <div class="admin-card">
+          <h2>Uploaded Solutions</h2>
+          <div style="overflow-x: auto;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Subject</th>
+                  <th>Prac</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="admin-solutions-list">
+                <tr><td colspan="3" style="text-align: center;">Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
