@@ -98,7 +98,7 @@
             <div class="search-container">
               <span class="material-icons-round search-icon">search</span>
               <input type="text" class="search-bar" id="main-search-bar"
-                placeholder="Search for subjects (e.g. Operating Systems, Java)..." autocomplete="off">
+                placeholder="Search subject code, practicals, tags..." autocomplete="off">
               <div class="search-results-dropdown" id="search-dropdown">
                 <!-- Dynamically filled with search results -->
               </div>
@@ -160,6 +160,33 @@
           <h3 style="margin-bottom: 20px;">List of Practicals (1 to 12)</h3>
           <div class="practicals-list" id="practicals-rows-container">
             <!-- Dynamically filled with practicals list -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ARTICLE VIEW -->
+      <section id="view-article" class="view-section">
+        <div class="content-wrapper">
+          <button class="btn btn-outline" id="article-back-btn" style="margin-bottom: 20px;">
+            <span class="material-icons-round">arrow_back</span> Back
+          </button>
+          
+          <div class="glass-card article-card">
+            <div class="article-header" style="border-bottom: 1px solid var(--glass-border); padding-bottom: 15px; margin-bottom: 20px;">
+              <div class="article-tags" id="article-tags-display" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px;">
+                <!-- Tags here -->
+              </div>
+              <h1 id="article-display-title" style="margin: 0 0 10px 0; font-size: 2rem;">Article Title</h1>
+              <div class="article-meta" style="color: var(--text-secondary); font-size: 0.9rem; display: flex; gap: 15px;">
+                <span id="article-display-subject"><span class="material-icons-round" style="font-size: 1rem; vertical-align: middle;">book</span> Subject Code</span>
+                <span id="article-display-prac"><span class="material-icons-round" style="font-size: 1rem; vertical-align: middle;">science</span> Practical 1</span>
+                <span id="article-display-date"><span class="material-icons-round" style="font-size: 1rem; vertical-align: middle;">update</span> Date</span>
+              </div>
+            </div>
+            
+            <div class="article-body" id="article-display-content" style="font-family: 'Inter', sans-serif; line-height: 1.6; font-size: 1.05rem;">
+              <!-- Rich text injected here -->
+            </div>
           </div>
         </div>
       </section>

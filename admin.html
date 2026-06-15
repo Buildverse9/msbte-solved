@@ -6,154 +6,401 @@
   <meta name="robots" content="noindex, nofollow">
   <title>Admin Dashboard | MSBTE Solved</title>
   <link rel="stylesheet" href="style.css">
+  
+  <!-- Quill.js Editor CSS -->
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  
   <style>
-    .admin-container {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0 20px;
+    body {
+      margin: 0;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
     }
+
+    /* Admin Layout */
+    .admin-layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .admin-sidebar {
+      width: 250px;
+      background: var(--glass-bg);
+      border-right: 1px solid var(--glass-border);
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .admin-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 20px 30px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0 10px;
+    }
+    .sidebar-link {
+      padding: 12px 15px;
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .sidebar-link:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+    }
+    .sidebar-link.active {
+      background: var(--primary-color);
+      color: #fff;
+    }
+
+    /* Main Content */
+    .admin-main {
+      flex: 1;
+      padding: 30px 40px;
+      overflow-y: auto;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .view-section {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .view-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .admin-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 30px;
     }
-    .admin-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
+    .admin-header h1 {
+      margin: 0;
+      font-size: 1.8rem;
     }
+
+    /* Cards & Tables */
     .admin-card {
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
       border-radius: var(--radius-lg);
       padding: 24px;
       box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
+    }
+
+    .table-container {
+      overflow-x: auto;
     }
     .admin-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
+      text-align: left;
     }
     .admin-table th, .admin-table td {
-      padding: 12px;
-      text-align: left;
+      padding: 12px 15px;
       border-bottom: 1px solid var(--glass-border);
     }
     .admin-table th {
       color: var(--text-secondary);
       font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .admin-table tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .action-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 4px;
+      transition: color 0.2s;
+    }
+    .action-btn:hover {
+      color: var(--primary-color);
+      background: rgba(255,255,255,0.05);
+    }
+    .action-btn.delete:hover {
+      color: #ef4444;
+    }
+
+    /* Form Styles */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
     }
     @media (max-width: 768px) {
-      .admin-grid {
-        grid-template-columns: 1fr;
-      }
+      .form-row { grid-template-columns: 1fr; }
+      .admin-layout { flex-direction: column; }
+      .admin-sidebar { width: 100%; height: auto; padding: 10px; flex-direction: row; justify-content: space-between; align-items: center; }
+      .sidebar-nav { flex-direction: row; }
+      .admin-logo { padding: 0; margin: 0; }
     }
-  </style>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C26BJ1833M"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
 
-    gtag('config', 'G-C26BJ1833M');
-  </script>
+    /* Multi-select styling */
+    .multi-select-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px;
+      background: var(--input-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      min-height: 48px;
+    }
+    .branch-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255,255,255,0.05);
+      padding: 5px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+    .branch-checkbox:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    .branch-checkbox input {
+      display: none;
+    }
+    .branch-checkbox.selected {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: var(--primary-color);
+      color: #60a5fa;
+    }
+
+    /* Editor styling overrides for dark mode */
+    #editor-container {
+      height: 400px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      color: var(--text-main);
+    }
+    .ql-toolbar.ql-snow {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-top-left-radius: var(--radius-sm);
+      border-top-right-radius: var(--radius-sm);
+    }
+    .ql-container.ql-snow {
+      border: 1px solid var(--glass-border);
+      border-bottom-left-radius: var(--radius-sm);
+      border-bottom-right-radius: var(--radius-sm);
+      background: var(--input-bg);
+    }
+    .ql-snow .ql-stroke {
+      stroke: var(--text-secondary);
+    }
+    .ql-snow .ql-fill, .ql-snow .ql-stroke.ql-fill {
+      fill: var(--text-secondary);
+    }
+    .ql-snow .ql-picker {
+      color: var(--text-secondary);
+    }
+
+    .tag-input-container {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 8px;
+      background: var(--input-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+    }
+    .tag-badge {
+      background: rgba(255,255,255,0.1);
+      padding: 4px 10px;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .tag-badge button {
+      background: none; border: none; color: inherit; cursor: pointer; padding: 0; font-size: 1.1rem; line-height: 1;
+    }
+    .tag-input {
+      border: none; background: transparent; outline: none; color: var(--text-main); flex: 1; min-width: 150px;
+    }
+
+  </style>
 </head>
 <body>
-  <div class="app-container">
-    <header id="app-header">
-      <div class="nav-container">
-        <a href="/" class="logo">
-          <span class="material-icons-round">auto_stories</span>
-          MSBTE Admin
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <a href="/" class="admin-logo">
+        <span class="material-icons-round">auto_stories</span>
+        MSBTE Admin
+      </a>
+      <nav class="sidebar-nav">
+        <a class="sidebar-link active" data-target="dashboard">
+          <span class="material-icons-round">dashboard</span>
+          Dashboard
         </a>
-        <div class="nav-actions">
-          <a href="/" class="btn btn-outline" style="text-decoration: none;">Back to Site</a>
-        </div>
-      </div>
-    </header>
+        <a class="sidebar-link" data-target="editor">
+          <span class="material-icons-round">edit_document</span>
+          Write Article
+        </a>
+        <a href="/" class="sidebar-link" target="_blank" style="margin-top: 20px;">
+          <span class="material-icons-round">open_in_new</span>
+          View Live Site
+        </a>
+      </nav>
+    </aside>
 
-    <main class="admin-container">
-      <div class="admin-header">
-        <h1>Admin Dashboard</h1>
-        <p>Manage manual solutions and uploads</p>
-      </div>
-
-      <div class="admin-grid">
-        <!-- Upload Form -->
-        <div class="admin-card">
-          <h2>Upload Official Solution</h2>
-          <form id="admin-upload-form" onsubmit="return false;">
-            <div class="form-group" style="margin-bottom: 15px;">
-              <label for="admin-branch">Branch</label>
-              <select id="admin-branch" class="form-control" required>
-                <option value="" disabled selected>Select Branch</option>
-              </select>
-            </div>
-
-            <div class="form-group" style="margin-bottom: 15px;">
-              <label for="admin-semester">Semester</label>
-              <select id="admin-semester" class="form-control" required disabled>
-                <option value="" disabled selected>Select Sem</option>
-                <option value="1">Semester 1</option>
-                <option value="2">Semester 2</option>
-                <option value="3">Semester 3</option>
-                <option value="4">Semester 4</option>
-                <option value="5">Semester 5</option>
-                <option value="6">Semester 6</option>
-              </select>
-            </div>
-
-            <div class="form-group" style="margin-bottom: 15px;">
-              <label for="admin-subject">Subject</label>
-              <select id="admin-subject" class="form-control" required disabled>
-                <option value="" disabled selected>Select Subject</option>
-              </select>
-            </div>
-
-            <div class="form-group" style="margin-bottom: 15px;">
-              <label for="admin-practical">Practical Number</label>
-              <select id="admin-practical" class="form-control" required disabled>
-                <option value="" disabled selected>Select Practical</option>
-              </select>
-            </div>
-
-            <div class="form-group" style="margin-bottom: 15px;">
-              <label>Solution File (PDF Only)</label>
-              <input type="file" id="admin-file" accept=".pdf" class="form-control" required style="padding: 10px;">
-            </div>
-
-            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;" id="admin-submit-btn">
-              <span class="material-icons-round">publish</span> Upload Solution
-            </button>
-          </form>
-          <div id="admin-upload-status" style="margin-top: 15px; font-weight: 500; text-align: center;"></div>
+    <!-- Main Content -->
+    <main class="admin-main">
+      
+      <!-- Dashboard View -->
+      <section id="view-dashboard" class="view-section active">
+        <div class="admin-header">
+          <h1>Dashboard</h1>
+          <button class="btn btn-primary" onclick="adminApp.openEditor()">
+            <span class="material-icons-round">add</span> New Article
+          </button>
         </div>
 
-        <!-- Solutions List -->
         <div class="admin-card">
-          <h2>Uploaded Solutions</h2>
-          <div style="overflow-x: auto;">
+          <h3>Published Articles</h3>
+          <div class="table-container">
             <table class="admin-table">
               <thead>
                 <tr>
+                  <th>Title</th>
                   <th>Subject</th>
-                  <th>Prac</th>
-                  <th>Action</th>
+                  <th>Practical</th>
+                  <th>Branches</th>
+                  <th>Last Updated</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
-              <tbody id="admin-solutions-list">
-                <tr><td colspan="3" style="text-align: center;">Loading...</td></tr>
+              <tbody id="articles-table-body">
+                <!-- Populated by JS -->
               </tbody>
             </table>
           </div>
         </div>
-      </div>
+      </section>
+
+      <!-- Editor View -->
+      <section id="view-editor" class="view-section">
+        <div class="admin-header">
+          <h1 id="editor-page-title">Write Article</h1>
+          <div>
+            <button class="btn btn-outline" onclick="adminApp.showView('dashboard')" style="margin-right: 10px;">Cancel</button>
+            <button class="btn btn-primary" id="save-article-btn">
+              <span class="material-icons-round">save</span> Save Article
+            </button>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <form id="article-form" onsubmit="return false;">
+            <input type="hidden" id="article-id" value="">
+            
+            <div class="form-group full-width">
+              <label>Article Title</label>
+              <input type="text" id="article-title" class="form-control" placeholder="e.g. Implement Binary Search Tree in C" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label>Applicable Branches (Select all that apply)</label>
+              <div class="multi-select-container" id="branch-checkboxes">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Semester</label>
+                <select id="article-semester" class="form-control" required>
+                  <option value="" disabled selected>Select Sem</option>
+                  <option value="1">Semester 1</option>
+                  <option value="2">Semester 2</option>
+                  <option value="3">Semester 3</option>
+                  <option value="4">Semester 4</option>
+                  <option value="5">Semester 5</option>
+                  <option value="6">Semester 6</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Subject</label>
+                <select id="article-subject" class="form-control" required disabled>
+                  <option value="" disabled selected>Select Subject</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Practical Number</label>
+                <select id="article-practical" class="form-control" required disabled>
+                  <option value="" disabled selected>Select Practical</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group full-width" style="margin-top: 20px;">
+              <label>Tags</label>
+              <div class="tag-input-container" id="tags-container">
+                <input type="text" class="tag-input" id="tag-input" placeholder="Type tag and hit Enter...">
+              </div>
+            </div>
+
+            <div class="form-group full-width" style="margin-top: 20px;">
+              <label>Article Content</label>
+              <div id="editor-container"></div>
+            </div>
+
+          </form>
+        </div>
+      </section>
+
     </main>
   </div>
 
+  <!-- Toast Notification -->
+  <div class="toast-msg success-toast" id="toast-notification">
+    <span class="material-icons-round" id="toast-icon">check_circle</span>
+    <span id="toast-message">Action successful!</span>
+  </div>
+
+  <!-- Load Data and Scripts -->
   <script src="data.js"></script>
+  <!-- Quill.js Library -->
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <!-- Admin Application Logic -->
   <script src="admin.js"></script>
 </body>
 </html>

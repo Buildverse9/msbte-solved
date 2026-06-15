@@ -5,17 +5,16 @@
     currentSem: null,
     currentSubject: null,
     theme: localStorage.getItem("msbte-theme") || "dark",
-    uploads: [], // Will be populated from backend API
+    articles: [], // Will be populated from backend API
     completedPracticals: JSON.parse(localStorage.getItem("msbte-completed")) || {}
   };
 
-  // Fetch solutions from static json file for GitHub Pages
+  // Fetch articles from static json file for GitHub Pages
   async function fetchSolutions() {
     try {
-      // Add a timestamp to prevent the browser from caching the old solutions.json
-      const res = await fetch(`data/solutions.json?t=${Date.now()}`);
+      const res = await fetch(`data/articles.json?t=${Date.now()}`);
       if (res.ok) {
-        state.uploads = await res.json();
+        state.articles = await res.json();
         // Re-render current view if needed
         if (location.hash.startsWith("#branch/") || location.hash.startsWith("#subject/") || location.hash === "#home" || location.hash === "") {
           router(); 
@@ -84,11 +83,14 @@
     }
 
     const matches = [];
+    
+    // 1. Search Subjects
     msbteData.branches.forEach(branch => {
       Object.entries(branch.semesters).forEach(([sem, subjects]) => {
         subjects.forEach(subject => {
           if (subject.name.toLowerCase().includes(query) || subject.code.toLowerCase().includes(query)) {
             matches.push({
+              type: 'subject',
               branchId: branch.id,
               branchCode: branch.code,
               sem: sem,
@@ -100,21 +102,54 @@
       });
     });
 
+    // 2. Search Articles (Practicals & Tags)
+    state.articles.forEach(art => {
+      const matchTag = art.tags && art.tags.some(t => t.includes(query));
+      const matchTitle = art.title.toLowerCase().includes(query);
+      if (matchTag || matchTitle) {
+        // Just push the article match
+        matches.push({
+          type: 'article',
+          id: art.id,
+          title: art.title,
+          tags: art.tags ? art.tags.join(', ') : '',
+          subjectCode: art.subject
+        });
+      }
+    });
+
     if (matches.length > 0) {
-      searchDropdown.innerHTML = matches.slice(0, 6).map(m => `
-        <div class="search-result-item" data-branch="${m.branchId}" data-sem="${m.sem}" data-code="${m.code}">
-          <span class="search-result-title">${m.name}</span>
-          <span class="search-result-meta">${m.branchCode} | Sem ${m.sem}</span>
-        </div>
-      `).join("");
+      searchDropdown.innerHTML = matches.slice(0, 8).map(m => {
+        if (m.type === 'subject') {
+          return `
+            <div class="search-result-item" data-type="subject" data-branch="${m.branchId}" data-sem="${m.sem}" data-code="${m.code}">
+              <span class="search-result-title"><span class="material-icons-round" style="font-size:14px;vertical-align:middle;">book</span> ${m.name}</span>
+              <span class="search-result-meta">${m.branchCode} | Sem ${m.sem}</span>
+            </div>
+          `;
+        } else {
+          return `
+            <div class="search-result-item" data-type="article" data-id="${m.id}">
+              <span class="search-result-title"><span class="material-icons-round" style="font-size:14px;vertical-align:middle;">article</span> ${m.title}</span>
+              <span class="search-result-meta">Sub: ${m.subjectCode} | Tags: ${m.tags}</span>
+            </div>
+          `;
+        }
+      }).join("");
       
       // Bind clicks to search items
       searchDropdown.querySelectorAll(".search-result-item").forEach(item => {
         item.addEventListener("click", () => {
-          const bId = item.getAttribute("data-branch");
-          const sem = item.getAttribute("data-sem");
-          const code = item.getAttribute("data-code");
-          location.hash = `#subject/${bId}/${sem}/${code}`;
+          const type = item.getAttribute("data-type");
+          if (type === 'subject') {
+            const bId = item.getAttribute("data-branch");
+            const sem = item.getAttribute("data-sem");
+            const code = item.getAttribute("data-code");
+            location.hash = `#subject/${bId}/${sem}/${code}`;
+          } else {
+            const id = item.getAttribute("data-id");
+            location.hash = `#article/${id}`;
+          }
           mainSearchBar.value = "";
           searchDropdown.style.display = "none";
         });
@@ -204,6 +239,11 @@
       showView("subject");
       renderSubjectView(branchId, semNum, subjectCode);
     } 
+    else if (hash.startsWith("#article/")) {
+      const id = hash.split("/")[1];
+      showView("article");
+      renderArticleView(id);
+    }
     else {
       // Direct view matching
       const viewName = hash.replace("#", "");
@@ -411,53 +451,54 @@
     for (let i = 1; i <= practicalCount; i++) {
       const pracNum = i;
       const progressKey = `${subjectCode}-${pracNum}`;
-      const isCompleted = state.completedPracticals[progressKey] || false;
 
-      // Check if admin has uploaded a solution for this practical
-      const adminSolution = state.uploads.find(u => 
-        u.branch === branchId && 
-        parseInt(u.semester) === parseInt(semNum) && 
-        u.subject === subjectCode && 
-        parseInt(u.practical) === pracNum
+      // Check if admin has published an article for this practical
+      const adminArticle = state.articles.find(a => 
+        a.branches.includes(branchId) && 
+        parseInt(a.semester) === parseInt(semNum) && 
+        a.subject === subjectCode && 
+        parseInt(a.practical) === pracNum
       );
+
+      const isCompleted = state.completedPracticals[`${subjectCode}-${pracNum}`];
 
       const row = document.createElement("div");
       row.className = "practical-row";
       
       row.innerHTML = `
-        <div class="prac-main">
-          <div class="prac-status ${isCompleted ? 'solved' : 'unsolved'}" title="${isCompleted ? 'Marked Complete' : 'Mark Completed'}" data-key="${progressKey}">
-            <span class="material-icons-round" style="font-size: 1.1rem;">${isCompleted ? 'check' : 'radio_button_unchecked'}</span>
-          </div>
-          <div class="prac-details">
-            <h4>Practical No. ${pracNum}</h4>
-            <div class="prac-meta">
-              <span>
-                <span class="material-icons-round" style="font-size: 0.85rem;">timer</span>
-                2 Hrs
-              </span>
-            </div>
+        <div class="prac-info">
+          <div class="prac-number">Practical ${pracNum}</div>
+          <div class="prac-title">Assigned Lab Experiment ${pracNum}</div>
+          <div class="prac-status ${isCompleted ? 'status-completed' : 'status-pending'}">
+            <span class="material-icons-round">${isCompleted ? 'check_circle' : 'pending_actions'}</span>
+            ${isCompleted ? 'Completed' : 'To Do'}
           </div>
         </div>
 
         <div class="prac-actions">
-          ${adminSolution ? `
-            <a href="${adminSolution.filePath.replace(/^\//, '')}" target="_blank" class="btn btn-primary" style="text-decoration:none;">
-              <span class="material-icons-round">visibility</span>
-              View Solution (PDF)
+          ${adminArticle ? `
+            <a href="#article/${adminArticle.id}" class="btn btn-primary" style="text-decoration:none;">
+              <span class="material-icons-round">menu_book</span>
+              Read Article
             </a>
           ` : `
-            <button class="btn btn-secondary" disabled title="Solution has not been uploaded by admin yet.">
+            <button class="btn btn-outline" disabled style="opacity: 0.6; cursor: not-allowed;">
               <span class="material-icons-round">hourglass_empty</span>
-              Pending
+              Pending Upload
             </button>
           `}
+          
+          <button class="btn btn-icon ${isCompleted ? 'completed-toggle-active' : ''}" 
+            onclick="togglePracticalCompleted('${subjectCode}', ${pracNum})"
+            title="${isCompleted ? 'Mark as Not Done' : 'Mark as Done'}">
+            <span class="material-icons-round">${isCompleted ? 'undo' : 'done'}</span>
+          </button>
         </div>
       `;
 
       // Status mark-complete check toggle click
       row.querySelector(".prac-status").addEventListener("click", (e) => {
-        const key = e.currentTarget.getAttribute("data-key");
+        const key = `${subjectCode}-${pracNum}`;
         state.completedPracticals[key] = !state.completedPracticals[key];
         localStorage.setItem("msbte-completed", JSON.stringify(state.completedPracticals));
         
@@ -468,5 +509,53 @@
       rowsContainer.appendChild(row);
     }
   }
+
+  // --- Render Article View ---
+  function renderArticleView(id) {
+    const article = state.articles.find(a => a.id === id);
+    if (!article) {
+      document.getElementById("article-display-content").innerHTML = "<p>Article not found.</p>";
+      return;
+    }
+
+    // Set Header
+    document.getElementById("article-display-title").textContent = article.title;
+    document.getElementById("article-display-subject").innerHTML = `<span class="material-icons-round" style="font-size: 1rem; vertical-align: middle;">book</span> Sub: ${article.subject}`;
+    document.getElementById("article-display-prac").innerHTML = `<span class="material-icons-round" style="font-size: 1rem; vertical-align: middle;">science</span> Prac: ${article.practical}`;
+    document.getElementById("article-display-date").innerHTML = `<span class="material-icons-round" style="font-size: 1rem; vertical-align: middle;">update</span> ${new Date(article.updatedAt).toLocaleDateString()}`;
+
+    // Render Tags
+    const tagsContainer = document.getElementById("article-tags-display");
+    if (article.tags && article.tags.length > 0) {
+      tagsContainer.innerHTML = article.tags.map(t => `<span class="tag-badge" style="background: var(--primary-color); color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8rem;">#${t}</span>`).join("");
+      tagsContainer.style.display = "flex";
+    } else {
+      tagsContainer.style.display = "none";
+    }
+
+    // Set HTML Content
+    document.getElementById("article-display-content").innerHTML = article.content;
+
+    // Back button routing
+    const backBtn = document.getElementById("article-back-btn");
+    backBtn.onclick = () => {
+      // Go back to the subject view
+      const firstBranch = article.branches[0];
+      location.hash = `#subject/${firstBranch}/${article.semester}/${article.subject}`;
+    };
+  }
+
+  // Expose togglePracticalCompleted to window since it's used in inline onclick
+  window.togglePracticalCompleted = function(subjectCode, pracNum) {
+    const key = `${subjectCode}-${pracNum}`;
+    state.completedPracticals[key] = !state.completedPracticals[key];
+    localStorage.setItem("msbte-completed", JSON.stringify(state.completedPracticals));
+    
+    // We need to re-render the subject view. We can extract parameters from URL hash.
+    if (location.hash.startsWith("#subject/")) {
+      const parts = location.hash.split("/");
+      renderSubjectView(parts[1], parts[2], parts[3]);
+    }
+  };
 
 })();
