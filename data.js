@@ -9,9 +9,9 @@ const msbteData = {
       description: "Learn software development, database systems, networking, web tech, and operating systems.",
       semesters: {
         1: [
-          { code: "311301", name: "Basic Mathematics", practicals: 12 },
-          { code: "311302", name: "Basic Physics", practicals: 12 },
-          { code: "311303", name: "Basic Chemistry", practicals: 12 }
+          { code: "311303", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
+          { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
+          { code: "311303", name: "BASIC SCIENCE (CHEMISTRY)", practicals: 12 }
         ],
         2: [
           { code: "312301", name: "Applied Mathematics", practicals: 12 },
@@ -53,8 +53,8 @@ const msbteData = {
       description: "Focuses on internet tech, software systems, scripting, databases, and network administration.",
       semesters: {
         1: [
-          { code: "311301", name: "Basic Mathematics", practicals: 12 },
-          { code: "311302", name: "Basic Physics", practicals: 12 },
+          { code: "311305", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
+          { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
           { code: "311304", name: "Web Page Designing", practicals: 12 }
         ],
         2: [
@@ -97,8 +97,8 @@ const msbteData = {
       description: "Understand surveying, concrete technology, highway engineering, and structural analysis.",
       semesters: {
         1: [
-          { code: "311301", name: "Basic Mathematics", practicals: 12 },
-          { code: "311302", name: "Basic Physics", practicals: 12 },
+          { code: "311305", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
+          { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
           { code: "311304", name: "Engineering Graphics", practicals: 12 }
         ],
         2: [
@@ -141,8 +141,8 @@ const msbteData = {
       description: "Learn fluid mechanics, machine design, thermodynamics, automobile engineering, and manufacturing.",
       semesters: {
         1: [
-          { code: "311301", name: "Basic Mathematics", practicals: 12 },
-          { code: "311302", name: "Basic Physics", practicals: 12 },
+          { code: "311305", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
+          { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
           { code: "311304", name: "Engineering Graphics", practicals: 12 }
         ],
         2: [
@@ -185,9 +185,9 @@ const msbteData = {
       description: "Learn power generation, electric circuits, transmission systems, electrical machines, and microcontrollers.",
       semesters: {
         1: [
-          { code: "311301", name: "Basic Mathematics", practicals: 12 },
-          { code: "311302", name: "Basic Physics", practicals: 12 },
-          { code: "311303", name: "Basic Chemistry", practicals: 12 }
+          { code: "311305", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
+          { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
+          { code: "311305", name: "BASIC SCIENCE (CHEMISTRY)", practicals: 12 }
         ],
         2: [
           { code: "312301", name: "Applied Mathematics", practicals: 12 },
@@ -229,9 +229,9 @@ const msbteData = {
       description: "Focuses on analog/digital circuits, microcontroller applications, signal systems, and telecommunication networks.",
       semesters: {
         1: [
-          { code: "311301", name: "Basic Mathematics", practicals: 12 },
-          { code: "311302", name: "Basic Physics", practicals: 12 },
-          { code: "311303", name: "Basic Chemistry", practicals: 12 }
+          { code: "311305", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
+          { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
+          { code: "311305", name: "BASIC SCIENCE (CHEMISTRY)", practicals: 12 }
         ],
         2: [
           { code: "312301", name: "Applied Mathematics", practicals: 12 },
@@ -269,7 +269,7 @@ const msbteData = {
   // Mapping of common subject codes to dynamic practical titles to make them look authentic
   practicalTemplates: {
     // Math, Physics, Chemistry
-    "311301": [
+    "311303": [
       "Find area under curve using integration and standard formulas.",
       "Solve simultaneous equations with Cramer's Rule.",
       "Determine limits for rational algebraic expressions.",
@@ -283,7 +283,7 @@ const msbteData = {
       "Evaluate basic double integrals.",
       "Solve practical word problems using probability rules."
     ],
-    "311302": [
+    "311305P": [
       "Use vernier calipers to measure dimensions of a cylinder.",
       "Use micrometer screw gauge to measure diameter of wire.",
       "Determine viscosity of given oil using Redwood viscometer.",
@@ -297,7 +297,21 @@ const msbteData = {
       "Verify Boyle's Law for gas pressure expansion.",
       "Study magnetic field intensity along the axis of circular coil."
     ],
-    "311303": [
+    
+    "311305C": [
+      "Determine the hardness of given water sample.",
+      "Determine the chloride content in given water sample.",
+      "Determine the pH value of given solutions using pH paper and pH meter.",
+      "Determine the conductivity of given solutions.",
+      "Prepare standard solution of oxalic acid or potassium permanganate.",
+      "Determine the percentage of copper in given brass sample.",
+      "Determine the percentage of iron in given iron alloy.",
+      "Determine the moisture content in coal.",
+      "Determine the ash content in coal.",
+      "Determine the calorific value of solid fuel using Bomb calorimeter.",
+      "Determine the flash point and fire point of given lubricating oil.",
+      "Determine the acid value of given lubricating oil."
+    ],"311303": [
       "Determine pH value of various chemical solutions using pH paper.",
       "Measure hardness of water sample by EDTA titration method.",
       "Determine chloride content of a water sample.",
@@ -411,7 +425,7 @@ const msbteData = {
         downloads: Math.floor(Math.random() * 400) + 100
       }));
     }
-    
+
     // Generate generalized aims based on subject name
     const genericAims = [
       `Introduction to fundamentals and setup of ${subjectName}.`,
