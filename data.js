@@ -537,7 +537,7 @@ const msbteData = {
   // Mapping of common subject codes to dynamic practical titles to make them look authentic
   practicalTemplates: {
     // Math, Physics, Chemistry
-    "311303": [
+    "312301": [
       "Find area under curve using integration and standard formulas.",
       "Solve simultaneous equations with Cramer's Rule.",
       "Determine limits for rational algebraic expressions.",
@@ -551,7 +551,7 @@ const msbteData = {
       "Evaluate basic double integrals.",
       "Solve practical word problems using probability rules."
     ],
-    "311305P": [
+    "311305": [
       "Use vernier calipers to measure dimensions of a cylinder.",
       "Use micrometer screw gauge to measure diameter of wire.",
       "Determine viscosity of given oil using Redwood viscometer.",
@@ -564,9 +564,7 @@ const msbteData = {
       "Determine acceleration due to gravity using simple pendulum.",
       "Verify Boyle's Law for gas pressure expansion.",
       "Study magnetic field intensity along the axis of circular coil."
-    ],
-
-    "311305C": [
+    ,
       "Determine the hardness of given water sample.",
       "Determine the chloride content in given water sample.",
       "Determine the pH value of given solutions using pH paper and pH meter.",
