@@ -1,3 +1,271 @@
+// const msbteData = {
+//   branches: [
+//     {
+//       id: "computer",
+//       code: "CO",
+//       name: "Computer Engineering",
+//       icon: "code",
+//       color: "var(--brand-computer)",
+//       description: "Learn software development, database systems, networking, web tech, and operating systems.",
+//       semesters: {
+//         1: [
+//           { code: "311303", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
+//           { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
+//           { code: "311303", name: "BASIC SCIENCE (CHEMISTRY)", practicals: 12 }
+//         ],
+//         2: [
+//           { code: "312301", name: "Applied Mathematics", practicals: 12 },
+//           { code: "312302", name: "Programming in C", practicals: 12 },
+//           { code: "312303", name: "Elements of Electrical Engg", practicals: 12 }
+//         ],
+//         3: [
+//           { code: "313301", name: "Object Oriented Programming (C++)", practicals: 12 },
+//           { code: "313302", name: "Data Structures using 'C'", practicals: 12 },
+//           { code: "313303", name: "Database Management System", practicals: 12 },
+//           { code: "313304", name: "Computer Graphics", practicals: 12 }
+//         ],
+//         4: [
+//           { code: "314301", name: "Java Programming", practicals: 12 },
+//           { code: "314302", name: "Software Engineering", practicals: 12 },
+//           { code: "314303", name: "Microprocessors", practicals: 12 },
+//           { code: "314304", name: "Data Communication & Computer Network", practicals: 12 }
+//         ],
+//         5: [
+//           { code: "315301", name: "Operating Systems", practicals: 12 },
+//           { code: "315302", name: "Client Side Scripting (JS)", practicals: 12 },
+//           { code: "315303", name: "Advanced Java Programming", practicals: 12 },
+//           { code: "315304", name: "Software Testing", practicals: 12 }
+//         ],
+//         6: [
+//           { code: "316301", name: "Mobile Application Development", practicals: 12 },
+//           { code: "316302", name: "Emerging Trends in CO", practicals: 12 },
+//           { code: "316303", name: "Network & Information Security", practicals: 12 },
+//           { code: "316304", name: "Management", practicals: 12 }
+//         ]
+//       }
+//     },
+//     {
+//       id: "it",
+//       code: "IF",
+//       name: "Information Technology",
+//       icon: "dns",
+//       color: "var(--brand-it)",
+//       description: "Focuses on internet tech, software systems, scripting, databases, and network administration.",
+//       semesters: {
+//         1: [
+//           { code: "311305", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
+//           { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
+//           { code: "311304", name: "Web Page Designing", practicals: 12 }
+//         ],
+//         2: [
+//           { code: "312301", name: "Applied Mathematics", practicals: 12 },
+//           { code: "312302", name: "Programming in C", practicals: 12 },
+//           { code: "312304", name: "Digital Techniques", practicals: 12 }
+//         ],
+//         3: [
+//           { code: "313301", name: "Object Oriented Programming (C++)", practicals: 12 },
+//           { code: "313302", name: "Data Structures using 'C'", practicals: 12 },
+//           { code: "313305", name: "DBMS and Administration", practicals: 12 },
+//           { code: "313306", name: "Principles of Communication", practicals: 12 }
+//         ],
+//         4: [
+//           { code: "314301", name: "Java Programming", practicals: 12 },
+//           { code: "314302", name: "Software Engineering", practicals: 12 },
+//           { code: "314304", name: "Data Communication & Computer Network", practicals: 12 },
+//           { code: "314305", name: "GUI Application Development", practicals: 12 }
+//         ],
+//         5: [
+//           { code: "315301", name: "Operating Systems", practicals: 12 },
+//           { code: "315302", name: "Client Side Scripting (JS)", practicals: 12 },
+//           { code: "315303", name: "Advanced Java Programming", practicals: 12 },
+//           { code: "315305", name: "Wireless & Mobile Networks", practicals: 12 }
+//         ],
+//         6: [
+//           { code: "316301", name: "Mobile Application Development", practicals: 12 },
+//           { code: "316302", name: "Emerging Trends in IT", practicals: 12 },
+//           { code: "316305", name: "Cryptography & Network Security", practicals: 12 },
+//           { code: "316304", name: "Management", practicals: 12 }
+//         ]
+//       }
+//     },
+//     {
+//       id: "civil",
+//       code: "CE",
+//       name: "Civil Engineering",
+//       icon: "foundation",
+//       color: "var(--brand-civil)",
+//       description: "Understand surveying, concrete technology, highway engineering, and structural analysis.",
+//       semesters: {
+//         1: [
+//           { code: "311305", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
+//           { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
+//           { code: "311304", name: "Engineering Graphics", practicals: 12 }
+//         ],
+//         2: [
+//           { code: "312301", name: "Applied Mathematics", practicals: 12 },
+//           { code: "312302", name: "Applied Mechanics", practicals: 12 },
+//           { code: "312303", name: "Construction Materials", practicals: 12 }
+//         ],
+//         3: [
+//           { code: "313301", name: "Advanced Surveying", practicals: 12 },
+//           { code: "313302", name: "Highway Engineering", practicals: 12 },
+//           { code: "313303", name: "Mechanics of Structures", practicals: 12 },
+//           { code: "313304", name: "Building Construction", practicals: 12 }
+//         ],
+//         4: [
+//           { code: "314301", name: "Theory of Structures", practicals: 12 },
+//           { code: "314302", name: "Geotechnical Engineering", practicals: 12 },
+//           { code: "314303", name: "Hydraulics", practicals: 12 },
+//           { code: "314304", name: "Computer Aided Drawing", practicals: 12 }
+//         ],
+//         5: [
+//           { code: "315301", name: "Estimating and Costing", practicals: 12 },
+//           { code: "315302", name: "Public Health Engineering", practicals: 12 },
+//           { code: "315303", name: "Concrete Technology", practicals: 12 },
+//           { code: "315304", name: "Design of Steel Structures", practicals: 12 }
+//         ],
+//         6: [
+//           { code: "316301", name: "Design of RCC Structures", practicals: 12 },
+//           { code: "316302", name: "Contracts and Accounts", practicals: 12 },
+//           { code: "316303", name: "Construction Management", practicals: 12 },
+//           { code: "316304", name: "Management", practicals: 12 }
+//         ]
+//       }
+//     },
+//     {
+//       id: "mechanical",
+//       code: "ME",
+//       name: "Mechanical Engineering",
+//       icon: "settings",
+//       color: "var(--brand-mechanical)",
+//       description: "Learn fluid mechanics, machine design, thermodynamics, automobile engineering, and manufacturing.",
+//       semesters: {
+//         1: [
+//           { code: "311305", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
+//           { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
+//           { code: "311304", name: "Engineering Graphics", practicals: 12 }
+//         ],
+//         2: [
+//           { code: "312301", name: "Applied Mathematics", practicals: 12 },
+//           { code: "312302", name: "Applied Mechanics", practicals: 12 },
+//           { code: "312303", name: "Mechanical Engg Workshop", practicals: 12 }
+//         ],
+//         3: [
+//           { code: "313301", name: "Strength of Materials", practicals: 12 },
+//           { code: "313302", name: "Basic Mechanical Engg", practicals: 12 },
+//           { code: "313303", name: "Thermal Engineering", practicals: 12 },
+//           { code: "313304", name: "Mechanical Engg Measurements", practicals: 12 }
+//         ],
+//         4: [
+//           { code: "314301", name: "Theory of Machines", practicals: 12 },
+//           { code: "314302", name: "Fluid Mechanics & Machinery", practicals: 12 },
+//           { code: "314303", name: "Manufacturing Processes", practicals: 12 },
+//           { code: "314304", name: "Manufacturing Engineering Materials", practicals: 12 }
+//         ],
+//         5: [
+//           { code: "315301", name: "Advanced Manufacturing Processes", practicals: 12 },
+//           { code: "315302", name: "Power Engineering", practicals: 12 },
+//           { code: "315303", name: "Elements of Machine Design", practicals: 12 },
+//           { code: "315304", name: "Mechatronics", practicals: 12 }
+//         ],
+//         6: [
+//           { code: "316301", name: "Industrial Engineering", practicals: 12 },
+//           { code: "316302", name: "Automobile Engineering", practicals: 12 },
+//           { code: "316303", name: "Refrigeration & Air Conditioning", practicals: 12 },
+//           { code: "316304", name: "Management", practicals: 12 }
+//         ]
+//       }
+//     },
+//     {
+//       id: "electrical",
+//       code: "EE",
+//       name: "Electrical Engineering",
+//       icon: "bolt",
+//       color: "var(--brand-electrical)",
+//       description: "Learn power generation, electric circuits, transmission systems, electrical machines, and microcontrollers.",
+//       semesters: {
+//         1: [
+//           { code: "311305", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
+//           { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
+//           { code: "311305", name: "BASIC SCIENCE (CHEMISTRY)", practicals: 12 }
+//         ],
+//         2: [
+//           { code: "312301", name: "Applied Mathematics", practicals: 12 },
+//           { code: "312303", name: "Elements of Electrical Engg", practicals: 12 },
+//           { code: "312304", name: "Fundamentals of Power Electronics", practicals: 12 }
+//         ],
+//         3: [
+//           { code: "313301", name: "Electrical Circuits & Networks", practicals: 12 },
+//           { code: "313302", name: "Electrical & Electronic Measurements", practicals: 12 },
+//           { code: "313303", name: "Electrical Machines - I", practicals: 12 },
+//           { code: "313304", name: "Electrical Power Generation", practicals: 12 }
+//         ],
+//         4: [
+//           { code: "314301", name: "Electrical Machines - II", practicals: 12 },
+//           { code: "314302", name: "Transmission & Distribution of Elec Power", practicals: 12 },
+//           { code: "314303", name: "Applied Power Electronics", practicals: 12 },
+//           { code: "314304", name: "Digital Electronics & Microcontroller Applications", practicals: 12 }
+//         ],
+//         5: [
+//           { code: "315301", name: "Switchgear & Protection", practicals: 12 },
+//           { code: "315302", name: "Energy Conservation & Audit", practicals: 12 },
+//           { code: "315303", name: "Industrial AC Machines", practicals: 12 },
+//           { code: "315304", name: "Utilization of Electrical Energy", practicals: 12 }
+//         ],
+//         6: [
+//           { code: "316301", name: "Installation, Commissioning & Maintenance", practicals: 12 },
+//           { code: "316302", name: "Electrical Drawing & CAD", practicals: 12 },
+//           { code: "316303", name: "Emerging Trends in Electrical Engg", practicals: 12 },
+//           { code: "316304", name: "Management", practicals: 12 }
+//         ]
+//       }
+//     },
+//     {
+//       id: "etc",
+//       code: "EJ",
+//       name: "Electronics & Telecommunication",
+//       icon: "router",
+//       color: "var(--brand-etc)",
+//       description: "Focuses on analog/digital circuits, microcontroller applications, signal systems, and telecommunication networks.",
+//       semesters: {
+//         1: [
+//           { code: "311305", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
+//           { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
+//           { code: "311305", name: "BASIC SCIENCE (CHEMISTRY)", practicals: 12 }
+//         ],
+//         2: [
+//           { code: "312301", name: "Applied Mathematics", practicals: 12 },
+//           { code: "312302", name: "Electronic Devices & Circuits", practicals: 12 },
+//           { code: "312303", name: "Digital Techniques", practicals: 12 }
+//         ],
+//         3: [
+//           { code: "313301", name: "Applied Electronics", practicals: 12 },
+//           { code: "313302", name: "Electric Circuits & Networks", practicals: 12 },
+//           { code: "313303", name: "Electronics Measurements & Instrumentation", practicals: 12 },
+//           { code: "313304", name: "Principles of Electronic Communication", practicals: 12 }
+//         ],
+//         4: [
+//           { code: "314301", name: "Linear Integrated Circuits", practicals: 12 },
+//           { code: "314302", name: "Microcontroller & Applications", practicals: 12 },
+//           { code: "314303", name: "Basic Feedback Control System", practicals: 12 },
+//           { code: "314304", name: "Analog & Digital Communication", practicals: 12 }
+//         ],
+//         5: [
+//           { code: "315301", name: "Microwave & Radar Engineering", practicals: 12 },
+//           { code: "315302", name: "Computer Networks & Security", practicals: 12 },
+//           { code: "315303", name: "Embedded Systems", practicals: 12 },
+//           { code: "315304", name: "Mobile Communication", practicals: 12 }
+//         ],
+//         6: [
+//           { code: "316301", name: "Computer Communication Networks", practicals: 12 },
+//           { code: "316302", name: "Optical Fiber Communication", practicals: 12 },
+//           { code: "316303", name: "Emerging Trends in Electronics", practicals: 12 },
+//           { code: "316304", name: "Management", practicals: 12 }
+//         ]
+//       }
+//     }
+//   ],
+
 const msbteData = {
   branches: [
     {
@@ -9,38 +277,39 @@ const msbteData = {
       description: "Learn software development, database systems, networking, web tech, and operating systems.",
       semesters: {
         1: [
-          { code: "311303", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
-          { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
-          { code: "311303", name: "BASIC SCIENCE (CHEMISTRY)", practicals: 12 }
+          { code: "311301", name: "Fundamentals of ICT", practicals: 14 },
+          { code: "311302", name: "Engineering Workshop Practice", practicals: 12 },
+          { code: "311303", name: "Communication Skills (English)", practicals: 12 },
+          { code: "311305", name: "Basic Science (Physics & Chemistry)", practicals: 16 }
         ],
         2: [
-          { code: "312301", name: "Applied Mathematics", practicals: 12 },
-          { code: "312302", name: "Programming in C", practicals: 12 },
-          { code: "312303", name: "Elements of Electrical Engg", practicals: 12 }
+          { code: "312301", name: "Applied Science (Physics & Chemistry)", practicals: 16 },
+          { code: "312302", name: "Programming in C", practicals: 14 },
+          { code: "312303", name: "Elements of Electrical Engg", practicals: 12 },
+          { code: "312304", name: "Web Page Designing", practicals: 14 }
         ],
         3: [
-          { code: "313301", name: "Object Oriented Programming (C++)", practicals: 12 },
-          { code: "313302", name: "Data Structures using 'C'", practicals: 12 },
+          { code: "313301", name: "Object Oriented Programming (C++)", practicals: 14 },
+          { code: "313302", name: "Data Structures using 'C'", practicals: 14 },
           { code: "313303", name: "Database Management System", practicals: 12 },
           { code: "313304", name: "Computer Graphics", practicals: 12 }
         ],
         4: [
-          { code: "314301", name: "Java Programming", practicals: 12 },
+          { code: "314301", name: "Java Programming", practicals: 16 },
           { code: "314302", name: "Software Engineering", practicals: 12 },
           { code: "314303", name: "Microprocessors", practicals: 12 },
           { code: "314304", name: "Data Communication & Computer Network", practicals: 12 }
         ],
         5: [
           { code: "315301", name: "Operating Systems", practicals: 12 },
-          { code: "315302", name: "Client Side Scripting (JS)", practicals: 12 },
-          { code: "315303", name: "Advanced Java Programming", practicals: 12 },
+          { code: "315302", name: "Client Side Scripting (JS)", practicals: 14 },
+          { code: "315303", name: "Advanced Java Programming", practicals: 14 },
           { code: "315304", name: "Software Testing", practicals: 12 }
         ],
         6: [
-          { code: "316301", name: "Mobile Application Development", practicals: 12 },
+          { code: "316301", name: "Mobile Application Development", practicals: 14 },
           { code: "316302", name: "Emerging Trends in CO", practicals: 12 },
-          { code: "316303", name: "Network & Information Security", practicals: 12 },
-          { code: "316304", name: "Management", practicals: 12 }
+          { code: "316303", name: "Network & Information Security", practicals: 12 }
         ]
       }
     },
@@ -53,38 +322,39 @@ const msbteData = {
       description: "Focuses on internet tech, software systems, scripting, databases, and network administration.",
       semesters: {
         1: [
-          { code: "311305", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
-          { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
-          { code: "311304", name: "Web Page Designing", practicals: 12 }
+          { code: "311301", name: "Fundamentals of ICT", practicals: 14 },
+          { code: "311303", name: "Communication Skills (English)", practicals: 12 },
+          { code: "311305", name: "Basic Science (Physics & Chemistry)", practicals: 16 },
+          { code: "311304", name: "Engineering Workshop Practice", practicals: 12 }
         ],
         2: [
-          { code: "312301", name: "Applied Mathematics", practicals: 12 },
-          { code: "312302", name: "Programming in C", practicals: 12 },
-          { code: "312304", name: "Digital Techniques", practicals: 12 }
+          { code: "312301", name: "Applied Science (Physics & Chemistry)", practicals: 16 },
+          { code: "312302", name: "Programming in C", practicals: 14 },
+          { code: "312304", name: "Digital Techniques", practicals: 12 },
+          { code: "312305", name: "Web Page Designing", practicals: 14 }
         ],
         3: [
-          { code: "313301", name: "Object Oriented Programming (C++)", practicals: 12 },
-          { code: "313302", name: "Data Structures using 'C'", practicals: 12 },
+          { code: "313301", name: "Object Oriented Programming (C++)", practicals: 14 },
+          { code: "313302", name: "Data Structures using 'C'", practicals: 14 },
           { code: "313305", name: "DBMS and Administration", practicals: 12 },
           { code: "313306", name: "Principles of Communication", practicals: 12 }
         ],
         4: [
-          { code: "314301", name: "Java Programming", practicals: 12 },
+          { code: "314301", name: "Java Programming", practicals: 16 },
           { code: "314302", name: "Software Engineering", practicals: 12 },
           { code: "314304", name: "Data Communication & Computer Network", practicals: 12 },
-          { code: "314305", name: "GUI Application Development", practicals: 12 }
+          { code: "314305", name: "GUI Application Development", practicals: 14 }
         ],
         5: [
           { code: "315301", name: "Operating Systems", practicals: 12 },
-          { code: "315302", name: "Client Side Scripting (JS)", practicals: 12 },
-          { code: "315303", name: "Advanced Java Programming", practicals: 12 },
+          { code: "315302", name: "Client Side Scripting (JS)", practicals: 14 },
+          { code: "315303", name: "Advanced Java Programming", practicals: 14 },
           { code: "315305", name: "Wireless & Mobile Networks", practicals: 12 }
         ],
         6: [
-          { code: "316301", name: "Mobile Application Development", practicals: 12 },
+          { code: "316301", name: "Mobile Application Development", practicals: 14 },
           { code: "316302", name: "Emerging Trends in IT", practicals: 12 },
-          { code: "316305", name: "Cryptography & Network Security", practicals: 12 },
-          { code: "316304", name: "Management", practicals: 12 }
+          { code: "316305", name: "Cryptography & Network Security", practicals: 12 }
         ]
       }
     },
@@ -97,38 +367,38 @@ const msbteData = {
       description: "Understand surveying, concrete technology, highway engineering, and structural analysis.",
       semesters: {
         1: [
-          { code: "311305", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
-          { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
-          { code: "311304", name: "Engineering Graphics", practicals: 12 }
+          { code: "311302", name: "Basic Surveying", practicals: 14 },
+          { code: "311303", name: "Communication Skills (English)", practicals: 12 },
+          { code: "311304", name: "Engineering Graphics", practicals: 12 },
+          { code: "311305", name: "Basic Science (Physics & Chemistry)", practicals: 16 }
         ],
         2: [
-          { code: "312301", name: "Applied Mathematics", practicals: 12 },
-          { code: "312302", name: "Applied Mechanics", practicals: 12 },
+          { code: "312301", name: "Applied Science (Physics & Chemistry)", practicals: 16 },
+          { code: "312302", name: "Applied Mechanics", practicals: 14 },
           { code: "312303", name: "Construction Materials", practicals: 12 }
         ],
         3: [
-          { code: "313301", name: "Advanced Surveying", practicals: 12 },
+          { code: "313301", name: "Advanced Surveying", practicals: 14 },
           { code: "313302", name: "Highway Engineering", practicals: 12 },
           { code: "313303", name: "Mechanics of Structures", practicals: 12 },
           { code: "313304", name: "Building Construction", practicals: 12 }
         ],
         4: [
           { code: "314301", name: "Theory of Structures", practicals: 12 },
-          { code: "314302", name: "Geotechnical Engineering", practicals: 12 },
-          { code: "314303", name: "Hydraulics", practicals: 12 },
+          { code: "314302", name: "Geotechnical Engineering", practicals: 14 },
+          { code: "314303", name: "Hydraulics", practicals: 14 },
           { code: "314304", name: "Computer Aided Drawing", practicals: 12 }
         ],
         5: [
           { code: "315301", name: "Estimating and Costing", practicals: 12 },
           { code: "315302", name: "Public Health Engineering", practicals: 12 },
-          { code: "315303", name: "Concrete Technology", practicals: 12 },
+          { code: "315303", name: "Concrete Technology", practicals: 14 },
           { code: "315304", name: "Design of Steel Structures", practicals: 12 }
         ],
         6: [
           { code: "316301", name: "Design of RCC Structures", practicals: 12 },
-          { code: "316302", name: "Contracts and Accounts", practicals: 12 },
-          { code: "316303", name: "Construction Management", practicals: 12 },
-          { code: "316304", name: "Management", practicals: 12 }
+          { code: "316302", name: "Contracts and Accounts", practicals: 10 },
+          { code: "316303", name: "Construction Management", practicals: 10 }
         ]
       }
     },
@@ -141,38 +411,38 @@ const msbteData = {
       description: "Learn fluid mechanics, machine design, thermodynamics, automobile engineering, and manufacturing.",
       semesters: {
         1: [
-          { code: "311305", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
-          { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
-          { code: "311304", name: "Engineering Graphics", practicals: 12 }
+          { code: "311302", name: "Engineering Workshop Practice", practicals: 12 },
+          { code: "311303", name: "Communication Skills (English)", practicals: 12 },
+          { code: "311304", name: "Engineering Graphics", practicals: 12 },
+          { code: "311305", name: "Basic Science (Physics & Chemistry)", practicals: 16 }
         ],
         2: [
-          { code: "312301", name: "Applied Mathematics", practicals: 12 },
-          { code: "312302", name: "Applied Mechanics", practicals: 12 },
+          { code: "312301", name: "Applied Science (Physics & Chemistry)", practicals: 16 },
+          { code: "312302", name: "Applied Mechanics", practicals: 14 },
           { code: "312303", name: "Mechanical Engg Workshop", practicals: 12 }
         ],
         3: [
           { code: "313301", name: "Strength of Materials", practicals: 12 },
-          { code: "313302", name: "Basic Mechanical Engg", practicals: 12 },
+          { code: "313302", name: "Basic Mechanical Engg", practicals: 14 },
           { code: "313303", name: "Thermal Engineering", practicals: 12 },
-          { code: "313304", name: "Mechanical Engg Measurements", practicals: 12 }
+          { code: "313304", name: "Mechanical Engg Measurements", practicals: 14 }
         ],
         4: [
           { code: "314301", name: "Theory of Machines", practicals: 12 },
-          { code: "314302", name: "Fluid Mechanics & Machinery", practicals: 12 },
+          { code: "314302", name: "Fluid Mechanics & Machinery", practicals: 14 },
           { code: "314303", name: "Manufacturing Processes", practicals: 12 },
-          { code: "314304", name: "Manufacturing Engineering Materials", practicals: 12 }
+          { code: "314304", name: "Computer Aided Drafting", practicals: 12 }
         ],
         5: [
           { code: "315301", name: "Advanced Manufacturing Processes", practicals: 12 },
           { code: "315302", name: "Power Engineering", practicals: 12 },
           { code: "315303", name: "Elements of Machine Design", practicals: 12 },
-          { code: "315304", name: "Mechatronics", practicals: 12 }
+          { code: "315304", name: "Mechatronics", practicals: 14 }
         ],
         6: [
           { code: "316301", name: "Industrial Engineering", practicals: 12 },
           { code: "316302", name: "Automobile Engineering", practicals: 12 },
-          { code: "316303", name: "Refrigeration & Air Conditioning", practicals: 12 },
-          { code: "316304", name: "Management", practicals: 12 }
+          { code: "316303", name: "Refrigeration & Air Conditioning", practicals: 12 }
         ]
       }
     },
@@ -185,38 +455,37 @@ const msbteData = {
       description: "Learn power generation, electric circuits, transmission systems, electrical machines, and microcontrollers.",
       semesters: {
         1: [
-          { code: "311305", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
-          { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
-          { code: "311305", name: "BASIC SCIENCE (CHEMISTRY)", practicals: 12 }
+          { code: "311302", name: "Engineering Workshop Practice", practicals: 12 },
+          { code: "311303", name: "Communication Skills (English)", practicals: 12 },
+          { code: "311305", name: "Basic Science (Physics & Chemistry)", practicals: 16 }
         ],
         2: [
-          { code: "312301", name: "Applied Mathematics", practicals: 12 },
-          { code: "312303", name: "Elements of Electrical Engg", practicals: 12 },
+          { code: "312301", name: "Applied Science (Physics & Chemistry)", practicals: 16 },
+          { code: "312303", name: "Elements of Electrical Engg", practicals: 14 },
           { code: "312304", name: "Fundamentals of Power Electronics", practicals: 12 }
         ],
         3: [
-          { code: "313301", name: "Electrical Circuits & Networks", practicals: 12 },
-          { code: "313302", name: "Electrical & Electronic Measurements", practicals: 12 },
-          { code: "313303", name: "Electrical Machines - I", practicals: 12 },
-          { code: "313304", name: "Electrical Power Generation", practicals: 12 }
+          { code: "313301", name: "Electrical Circuits & Networks", practicals: 14 },
+          { code: "313302", name: "Electrical & Electronic Measurements", practicals: 14 },
+          { code: "313303", name: "Electrical Machines - I", practicals: 16 },
+          { code: "313304", name: "Electrical Power Generation", practicals: 10 }
         ],
         4: [
-          { code: "314301", name: "Electrical Machines - II", practicals: 12 },
-          { code: "314302", name: "Transmission & Distribution of Elec Power", practicals: 12 },
+          { code: "314301", name: "Electrical Machines - II", practicals: 16 },
+          { code: "314302", name: "Transmission & Distribution of Elec Power", practicals: 10 },
           { code: "314303", name: "Applied Power Electronics", practicals: 12 },
-          { code: "314304", name: "Digital Electronics & Microcontroller Applications", practicals: 12 }
+          { code: "314304", name: "Digital Electronics & Microcontroller Applications", practicals: 14 }
         ],
         5: [
           { code: "315301", name: "Switchgear & Protection", practicals: 12 },
-          { code: "315302", name: "Energy Conservation & Audit", practicals: 12 },
-          { code: "315303", name: "Industrial AC Machines", practicals: 12 },
-          { code: "315304", name: "Utilization of Electrical Energy", practicals: 12 }
+          { code: "315302", name: "Energy Conservation & Audit", practicals: 10 },
+          { code: "315303", name: "Industrial AC Machines", practicals: 14 },
+          { code: "315304", name: "Utilization of Electrical Energy", practicals: 10 }
         ],
         6: [
           { code: "316301", name: "Installation, Commissioning & Maintenance", practicals: 12 },
-          { code: "316302", name: "Electrical Drawing & CAD", practicals: 12 },
-          { code: "316303", name: "Emerging Trends in Electrical Engg", practicals: 12 },
-          { code: "316304", name: "Management", practicals: 12 }
+          { code: "316302", name: "Electrical Drawing & CAD", practicals: 14 },
+          { code: "316303", name: "Emerging Trends in Electrical Engg", practicals: 10 }
         ]
       }
     },
@@ -229,42 +498,42 @@ const msbteData = {
       description: "Focuses on analog/digital circuits, microcontroller applications, signal systems, and telecommunication networks.",
       semesters: {
         1: [
-          { code: "311305", name: "COMMUNICATION SKILLS (ENGLISH)", practicals: 12 },
-          { code: "311305", name: "BASIC SCIENCE (PHYSICS)", practicals: 12 },
-          { code: "311305", name: "BASIC SCIENCE (CHEMISTRY)", practicals: 12 }
+          { code: "311302", name: "Engineering Workshop Practice", practicals: 12 },
+          { code: "311303", name: "Communication Skills (English)", practicals: 12 },
+          { code: "311305", name: "Basic Science (Physics & Chemistry)", practicals: 16 }
         ],
         2: [
-          { code: "312301", name: "Applied Mathematics", practicals: 12 },
-          { code: "312302", name: "Electronic Devices & Circuits", practicals: 12 },
-          { code: "312303", name: "Digital Techniques", practicals: 12 }
+          { code: "312301", name: "Applied Science (Physics & Chemistry)", practicals: 16 },
+          { code: "312302", name: "Electronic Devices & Circuits", practicals: 16 },
+          { code: "312303", name: "Digital Techniques", practicals: 14 }
         ],
         3: [
-          { code: "313301", name: "Applied Electronics", practicals: 12 },
+          { code: "313301", name: "Applied Electronics", practicals: 14 },
           { code: "313302", name: "Electric Circuits & Networks", practicals: 12 },
-          { code: "313303", name: "Electronics Measurements & Instrumentation", practicals: 12 },
+          { code: "313303", name: "Electronics Measurements & Instrumentation", practicals: 14 },
           { code: "313304", name: "Principles of Electronic Communication", practicals: 12 }
         ],
         4: [
-          { code: "314301", name: "Linear Integrated Circuits", practicals: 12 },
-          { code: "314302", name: "Microcontroller & Applications", practicals: 12 },
+          { code: "314301", name: "Linear Integrated Circuits", practicals: 14 },
+          { code: "314302", name: "Microcontroller & Applications", practicals: 16 },
           { code: "314303", name: "Basic Feedback Control System", practicals: 12 },
           { code: "314304", name: "Analog & Digital Communication", practicals: 12 }
         ],
         5: [
           { code: "315301", name: "Microwave & Radar Engineering", practicals: 12 },
-          { code: "315302", name: "Computer Networks & Security", practicals: 12 },
-          { code: "315303", name: "Embedded Systems", practicals: 12 },
+          { code: "315302", name: "Computer Networks & Security", practicals: 14 },
+          { code: "315303", name: "Embedded Systems", practicals: 14 },
           { code: "315304", name: "Mobile Communication", practicals: 12 }
         ],
         6: [
-          { code: "316301", name: "Computer Communication Networks", practicals: 12 },
+          { code: "316301", name: "Computer Communication Networks", practicals: 14 },
           { code: "316302", name: "Optical Fiber Communication", practicals: 12 },
-          { code: "316303", name: "Emerging Trends in Electronics", practicals: 12 },
-          { code: "316304", name: "Management", practicals: 12 }
+          { code: "316303", name: "VLSI with VHDL", practicals: 14 }
         ]
       }
     }
   ],
+
   // Mapping of common subject codes to dynamic practical titles to make them look authentic
   practicalTemplates: {
     // Math, Physics, Chemistry
@@ -296,7 +565,7 @@ const msbteData = {
       "Verify Boyle's Law for gas pressure expansion.",
       "Study magnetic field intensity along the axis of circular coil."
     ],
-    
+
     "311305C": [
       "Determine the hardness of given water sample.",
       "Determine the chloride content in given water sample.",
@@ -310,7 +579,7 @@ const msbteData = {
       "Determine the calorific value of solid fuel using Bomb calorimeter.",
       "Determine the flash point and fire point of given lubricating oil.",
       "Determine the acid value of given lubricating oil."
-    ],"311303": [
+    ], "311303": [
       "Determine pH value of various chemical solutions using pH paper.",
       "Measure hardness of water sample by EDTA titration method.",
       "Determine chloride content of a water sample.",
