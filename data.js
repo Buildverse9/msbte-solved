@@ -564,7 +564,7 @@ const msbteData = {
       "Determine acceleration due to gravity using simple pendulum.",
       "Verify Boyle's Law for gas pressure expansion.",
       "Study magnetic field intensity along the axis of circular coil."
-    ,
+      ,
       "Determine the hardness of given water sample.",
       "Determine the chloride content in given water sample.",
       "Determine the pH value of given solutions using pH paper and pH meter.",
