@@ -215,11 +215,12 @@ const adminApp = (() => {
       const res = await fetch('/api/articles');
       if (res.ok) {
         articles = await res.json();
-        renderTable();
       }
     } catch (err) {
       console.error(err);
-      showToast('Failed to load articles', 'error');
+      showToast('Failed to load articles (Make sure you are running the local server)', 'error');
+    } finally {
+      renderTable();
     }
   }
 
