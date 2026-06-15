@@ -345,7 +345,6 @@
         <div class="semester-content">
           <div class="subjects-grid">
             ${subjects.map(sub => {
-              const uploadsCount = state.uploads.filter(u => u.branch === branchId && parseInt(u.semester) === sem && u.subject === sub.code).length;
               const completedCount = Object.keys(state.completedPracticals).filter(key => key.startsWith(`${sub.code}-`) && state.completedPracticals[key]).length;
 
               return `
@@ -355,11 +354,11 @@
                   <div class="subject-stat-bar">
                     <span>
                       <span class="material-icons-round" style="font-size: 0.9rem;">check_circle</span>
-                      ${completedCount}/12 Check
+                      ${completedCount}/${sub.practicals} Check
                     </span>
                     <span>
                       <span class="material-icons-round" style="font-size: 0.9rem;">cloud_done</span>
-                      ${12 + uploadsCount} Solved
+                      ${sub.practicals} Solved
                     </span>
                   </div>
                 </div>
