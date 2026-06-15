@@ -265,7 +265,6 @@ const msbteData = {
       }
     }
   ],
-
   // Mapping of common subject codes to dynamic practical titles to make them look authentic
   practicalTemplates: {
     // Math, Physics, Chemistry
